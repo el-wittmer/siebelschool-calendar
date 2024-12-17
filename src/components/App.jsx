@@ -8,7 +8,10 @@ export default function App() {
 
   const [post, setPost] = React.useState(null);
 
-  axios.get(CALENDAR_URL)
+  const CALENDAR_URL = import.meta.env.VITE_CALENDAR_URL
+  console.log("CALENDAR URL:", import.meta.env.VITE_CALENDAR_URL);
+
+  axios.get(`${CALENDAR_URL}`)
    .then(function (response) {
        const data = JSON.parse(
         convert.xml2json(response.data, { compact: true, spaces: 2 })

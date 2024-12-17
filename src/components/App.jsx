@@ -23,7 +23,6 @@ export default function App() {
    });  
 
   if (!post) return "No Events!"
-  console.log(post.events[0]);
 
   function dateFormat(int){
     var date = new Date();

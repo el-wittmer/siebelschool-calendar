@@ -22,7 +22,12 @@ export default function App() {
        console.log(error);
    });  
 
-  if (!post) return "No Events!"
+  if (!post) return (
+    <div>
+    <Header />
+    <div>...Loading...</div>
+    </div>
+  )
 
   function dateFormat(int){
     var date = new Date();
@@ -67,7 +72,7 @@ export default function App() {
         </div>
         <div id="tomorrow" class="note-column">
         <h2>Upcoming</h2>
-        {filteredWeek.slice(0, 5).map((event) => (
+        {filteredWeek.slice(0, 4).map((event) => (
               <Event key={event.eventId._text}
               title={event.title._text}
               startTime={event.startTime._text}

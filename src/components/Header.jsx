@@ -5,7 +5,7 @@ function Header() {
 
   return (
     <header>
-      <h1>Siebel School for Computing and Data Science - Upcoming Events</h1>
+      <h1>Siebel School for Computing and Data Science</h1>
       <h2>Current Time: {time}</h2>
     </header>
   );

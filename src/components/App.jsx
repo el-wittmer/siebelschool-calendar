@@ -12,19 +12,18 @@ export default function App() {
 
   axios.get(`${CALENDAR_URL}`)
    .then(function (response) {
-       const data = JSON.parse(
+        const data = JSON.parse(
         convert.xml2json(response.data, { compact: true, spaces: 2 })
       );
       let events = data.responseWS.publicEventWS;
       setPost({ events });
    })
    .catch(function (error) {
-       console.log(error);
+        console.log(error);
    });  
 
   if (!post) return (
     <div>
-    <Header />
     <div>...Loading...</div>
     </div>
   )
@@ -46,7 +45,6 @@ export default function App() {
 
   return (
     <div>
-      <Header />
       <div class="note-container">
         <div id="today" class="note-column">
         <h2>Today</h2>

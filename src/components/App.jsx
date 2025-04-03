@@ -3,6 +3,10 @@ import Header from "./Header";
 import Event from "./Event";
 import axios from "axios";
 import convert from "xml-js";
+import 'ldrs/ring'
+import { dotSpinner } from 'ldrs'
+
+dotSpinner.register()
 
 export default function App() {
 
@@ -16,6 +20,7 @@ export default function App() {
         convert.xml2json(response.data, { compact: true, spaces: 2 })
       );
       let events = data.responseWS.publicEventWS;
+      console.log(events);
       setPost({ events });
    })
    .catch(function (error) {
@@ -24,8 +29,40 @@ export default function App() {
 
   if (!post) return (
     <div>
-    <div>...Loading...</div>
+      <div class="note-container">
+        <div id="today" class="note-column">
+        <h2>Today</h2>
+          <div class="loading">
+              <l-dot-spinner
+                size="40"
+                speed="0.9" 
+                color="black" 
+              ></l-dot-spinner>
+            </div>
+        </div>
+        <div id="tomorrow" class="note-column">
+        <h2>Tomorrow</h2>
+          <div class="loading">
+            <l-dot-spinner
+              size="40"
+              speed="0.9" 
+              color="black" 
+            ></l-dot-spinner>
+          </div>
+        </div>
+        <div id="upcoming" class="note-column">
+        <h2>Upcoming</h2>
+          <div class="loading">
+            <l-dot-spinner
+              size="40"
+              speed="0.9" 
+              color="black" 
+            ></l-dot-spinner>
+          </div>
+        </div>
+      </div>
     </div>
+
   )
 
   function dateFormat(int){
@@ -48,7 +85,12 @@ export default function App() {
       <div class="note-container">
         <div id="today" class="note-column">
         <h2>Today</h2>
-        {filteredToday.map((event) => (
+        {filteredToday.length === 0 ? 
+          <div class="note">
+            <p>No remaining events today!</p>
+          </div>
+        :
+          filteredToday.map((event) => (
               <Event key={event.eventId._text}
               title={event.title._text}
               startTime={event.startTime._text}
@@ -59,7 +101,12 @@ export default function App() {
         </div>
         <div id="tomorrow" class="note-column">
         <h2>Tomorrow</h2>
-        {filteredTomorrow.map((event) => (
+        {filteredTomorrow === 0 ? 
+          <div class="note">
+            <p>No events tomorrow!</p>
+          </div>
+        :
+            filteredTomorrow.map((event) => (
               <Event key={event.eventId._text}
               title={event.title._text}
               startTime={event.startTime._text}
@@ -68,9 +115,14 @@ export default function App() {
               virtualEvent={event.virtualEvent._text}/>
             ))}
         </div>
-        <div id="tomorrow" class="note-column">
+        <div id="upcoming" class="note-column">
         <h2>Upcoming</h2>
-        {filteredWeek.slice(0, 4).map((event) => (
+        {filteredWeek === 0 ? 
+        <div class="note">
+          <p>No upcoming events!</p>
+        </div>
+        :
+          filteredWeek.slice(0, 4).map((event) => (
               <Event key={event.eventId._text}
               title={event.title._text}
               startTime={event.startTime._text}

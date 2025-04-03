@@ -6,12 +6,11 @@ export default function Event(props) {
 
   return (
     <div class="note">
-        <h1>{props.title}</h1>
+        <h3>{props.title}</h3>
         <br />
         {virtual === "true" ? <p>Online via Zoom</p> : <p>{props.location}</p>}
         <p>{props.startDate}</p>
         <p>{props.startTime}</p>
-        <br />
     </div>
   );
 };

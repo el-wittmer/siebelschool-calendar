@@ -12,9 +12,9 @@ body {
   font-family: "Montserrat", sans-serif; 
 }
 
-header {
+h2 {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #13294b;
   margin: auto -16px;
@@ -22,11 +22,7 @@ header {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   flex-direction: row;
   color: #fff;
-  font-weight: 200;
-}
-
-h2 {
-  font-weight: bold;
+  font-weight: 200 bold;
 }
 
 footer {
@@ -43,7 +39,6 @@ footer p {
 
 .note-container {
   display: grid;
-  margin-top: 20px;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -59,6 +54,7 @@ footer p {
   width: 90%;
   margin: 16px;
   float: left;
+  text-align: center;
 }
 .note h1 {
   font-size: 1.1em;
@@ -69,4 +65,41 @@ footer p {
   margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px 10px 0px;
+}
+
+@media screen and (max-width : 700px) {
+  .note-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .note-column h2{
+    text-align: center;
+  }
+  
+  .note {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    width: 90%;
+    margin: 16px;
+    float: left;
+  }
+  .note h1 {
+    font-size: 1.1em;
+    margin-bottom: 6px;
+  }
+  .note p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 }

@@ -5,7 +5,6 @@ function Header() {
 
   return (
     <header>
-      <h1>Siebel School for Computing and Data Science</h1>
     </header>
   );
 }

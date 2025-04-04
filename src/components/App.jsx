@@ -79,6 +79,7 @@ export default function App() {
   const filteredToday = post.events.filter(item => item.startDate._text == today);
   const filteredTomorrow = post.events.filter(item => item.startDate._text == tomorrow);
   const filteredWeek = post.events.filter(item => Date.parse(item.startDate._text) > Date.parse(tomorrow));
+  console.log(filteredTomorrow.length)
 
   return (
     <div>
@@ -101,7 +102,7 @@ export default function App() {
         </div>
         <div id="tomorrow" class="note-column">
         <h2>Tomorrow</h2>
-        {filteredTomorrow === 0 ? 
+        {filteredTomorrow.length === 0 ? 
           <div class="note">
             <p>No events tomorrow!</p>
           </div>
@@ -117,7 +118,7 @@ export default function App() {
         </div>
         <div id="upcoming" class="note-column">
         <h2>Upcoming</h2>
-        {filteredWeek === 0 ? 
+        {filteredWeek.length === 0 ? 
         <div class="note">
           <p>No upcoming events!</p>
         </div>

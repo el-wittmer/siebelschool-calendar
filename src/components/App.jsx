@@ -54,7 +54,7 @@ export default function App() {
     return month + '/' + day + '/' + year
   }
 
-  const thisMonth = dateFormat(60);
+  const thisMonth = dateFormat(30);
   const filteredWeek = post.events.filter(item => Date.parse(item.startDate._text) < Date.parse(thisMonth));
 
   return (
@@ -67,7 +67,7 @@ export default function App() {
           <p>No upcoming events!</p>
         </div>
         :
-          filteredWeek.slice(0, 4).map((event) => (
+          filteredWeek.slice(0, 15).map((event) => (
               <Event key={event.eventId._text}
               title={event.title._text}
               startTime={event.startTime._text}

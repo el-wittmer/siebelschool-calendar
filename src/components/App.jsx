@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from 'react'
 import Header from "./Header";
 import Event from "./Event";
 import axios from "axios";
@@ -27,11 +27,16 @@ export default function App() {
     .catch(function (error) {
           console.log(error);
     });
-  }
-  if (!post) {
-    getData();
-  }
-  setInterval(getData, 60000);
+  };
+
+  useEffect(() => {
+    getData(); 
+    const interval = setInterval(() => {
+      console.log(`Fetching data at ${new Date().toLocaleTimeString()}`);
+      getData();
+    }, 900000); // Fetch data every 15 minutes
+    return () => clearInterval(interval);
+  }, []);
 
   if (!post) return (
     <div>

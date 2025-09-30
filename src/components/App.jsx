@@ -14,18 +14,24 @@ export default function App() {
 
   const CALENDAR_URL = import.meta.env.VITE_CALENDAR_URL
 
-  axios.get(`${CALENDAR_URL}`)
-   .then(function (response) {
-        const data = JSON.parse(
-        convert.xml2json(response.data, { compact: true, spaces: 2 })
-      );
-      let events = data.responseWS.publicEventWS;
-      console.log(events);
-      setPost({ events });
-   })
-   .catch(function (error) {
-        console.log(error);
-   });  
+  function getData(){
+    axios.get(`${CALENDAR_URL}`)
+    .then(function (response) {
+          const data = JSON.parse(
+          convert.xml2json(response.data, { compact: true, spaces: 2 })
+        );
+        let events = data.responseWS.publicEventWS;
+        console.log("Data retrieved successfully.");
+        setPost({ events });
+    })
+    .catch(function (error) {
+          console.log(error);
+    });
+  }
+  if (!post) {
+    getData();
+  }
+  setInterval(getData, 60000);
 
   if (!post) return (
     <div>
